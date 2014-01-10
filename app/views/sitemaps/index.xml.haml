@@ -1,0 +1,7 @@
+- base_url = "http://#{request.host_with_port}"
+!!! XML
+%sitemapindex{:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9"}
+  - for sitemap in @sitemaps
+    %sitemap
+      %loc= sitemap[:url] + ".xml"
+      %lastmod= (sitemap[:last_mod] || Time.now).to_formatted_s(:w3c)

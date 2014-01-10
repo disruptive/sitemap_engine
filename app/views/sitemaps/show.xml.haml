@@ -1,0 +1,9 @@
+- base_url = "http://#{request.host_with_port}"
+!!! XML
+%urlset{:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9"}
+  - for url in @urls
+    %url
+      %loc= url[:url]
+      %lastmod= (url[:last_mod] || Time.now).to_formatted_s(:w3c)
+      %changefreq= url[:change_freq] || 'weekly'
+      %priority= url[:priority] || 0.5
